@@ -1,0 +1,41 @@
+{
+  "navbar": {
+    "logo": "CV-er",
+    "builder": "Builder",
+    "preview": "Vorschau",
+    "login": "Anmelden",
+    "exportPdf": "PDF exportieren"
+  },
+  "builder": {
+    "title": "Dein Lebenslauf",
+    "chooseTemplate": "CV-Vorlage wählen"
+  },
+  "templates": {
+    "classic-ats": "Klassisch ATS",
+    "modern-clean": "Modern Clean",
+    "sidebar-left": "Zweispaltig Sidebar",
+    "minimal": "Minimalistisch",
+    "creative": "Kreativ mit Icons",
+    "executive": "Executive / Premium",
+    "technical": "Technisch IT",
+    "student": "Student / Einsteiger",
+    "hybrid-timeline": "Hybrid + Timeline",
+    "classic-desc": "Einspaltig, maximale ATS-Kompatibilität",
+    "modern-desc": "Frisches, professionelles Design",
+    "sidebar-desc": "Linke Spalte mit Kontaktdaten",
+    "minimal-desc": "Viel Freiraum, Eleganz",
+    "creative-desc": "Für Designer und Marketing",
+    "executive-desc": "Für Manager und C-Level",
+    "technical-desc": "Viele Skills und Projekte",
+    "student-desc": "Starker Fokus auf Ausbildung",
+    "hybrid-desc": "Hybrid + Zeitachse"
+  },
+  "form": {
+    "name": "Vor- und Nachname",
+    "title": "Berufsbezeichnung",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "location": "Stadt",
+    "summary": "Über mich"
+  }
+}

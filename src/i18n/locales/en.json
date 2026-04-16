@@ -1,0 +1,41 @@
+{
+  "navbar": {
+    "logo": "CV-er",
+    "builder": "Builder",
+    "preview": "Preview",
+    "login": "Log in",
+    "exportPdf": "Export PDF"
+  },
+  "builder": {
+    "title": "Your CV",
+    "chooseTemplate": "Choose CV template"
+  },
+  "templates": {
+    "classic-ats": "Classic ATS",
+    "modern-clean": "Modern Clean",
+    "sidebar-left": "Two-column Sidebar",
+    "minimal": "Minimalist",
+    "creative": "Creative with icons",
+    "executive": "Executive / Premium",
+    "technical": "Technical IT",
+    "student": "Student / Entry-Level",
+    "hybrid-timeline": "Hybrid + Timeline",
+    "classic-desc": "Single column, maximum ATS compatibility",
+    "modern-desc": "Fresh, professional look",
+    "sidebar-desc": "Left column with contact info",
+    "minimal-desc": "Lots of space, elegance",
+    "creative-desc": "For designers and marketing",
+    "executive-desc": "For managers and C-level",
+    "technical-desc": "Lots of skills and projects",
+    "student-desc": "Strong focus on education",
+    "hybrid-desc": "Mixed + timeline"
+  },
+  "form": {
+    "name": "Full name",
+    "title": "Job title",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "City",
+    "summary": "About me"
+  }
+}

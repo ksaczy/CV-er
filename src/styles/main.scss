@@ -1,0 +1,313 @@
+// ==================== HYBRYDA: TAILWIND + SCSS ====================
+
+
+@use 'abstract/variables' as *;
+@use 'base/reset' as *;
+
+// 3. Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// 4. Własne komponenty
+@layer components {
+  .cv-preview-container {
+    @apply bg-white shadow-2xl rounded-2xl overflow-hidden;
+  }
+}
+
+// ==================== LAYOUT (SCSS) ====================
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  height: 70px;
+  background: $color-bg;
+  border-bottom: 1px solid $color-border;
+  padding: 0 $spacer-md;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  gap: 0;
+  overflow: hidden;                    /* ← KLUCZOWA ZMIANA */
+  align-items: flex-start;
+}
+
+.form-panel {
+  background: $color-bg;
+  border-right: 1px solid #e2e8f0;
+  padding: $spacer-lg;
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;                    /* ← formularz ma teraz własny scroll */
+  max-height: calc(100vh - 70px);      /* dopasowane do navbara */
+}
+
+.preview-panel {
+  background: #f8fafc;
+  padding: $spacer-lg;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  /* NOWE – preview jest sticky */
+  position: sticky;
+  top: 70px;                           /* = wysokość navbara */
+  height: fit-content;
+  align-self: flex-start;
+  z-index: 10;
+}
+
+// ==================== PREVIEW CV ====================
+
+.cv-preview-container {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 1 / 1.414;        // proporcje A4
+  padding: 50px 55px;
+  font-size: 15px;
+  line-height: 1.6;
+  background: white;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+
+  // 1. Klasyczny ATS
+  &.classic-template {
+    border-left: 8px solid #1f2937;
+    border-radius: 4px;
+  }
+
+  // 2. Nowoczesny Clean – belka w nowym primary
+  &.modern-template {
+    border: 1px solid $color-border;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, $color-primary, $color-primary-light);
+    }
+
+    .cv-content {
+      padding-top: 58px;
+    }
+  }
+
+
+  // 3. Dwukolumnowy z lewym sidebar
+  &.sidebar-template {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    padding: 0;
+    background: linear-gradient(90deg, #f8fafc 260px, white 260px);
+    border-radius: 12px;
+    overflow: hidden;
+
+    .cv-content {
+      padding: 50px 50px 50px 10px;   // ← zwiększyłem padding-right do 80px
+    }
+  }
+
+  // 4. Minimalistyczny
+  &.minimal-template {
+    @apply text-slate-800 shadow-inner;
+    border: 2px solid #f1f5f9;
+    border-radius: 16px;
+  }
+
+  // 5. Kreatywny
+  &.creative-template {
+    @apply border-2 border-orange-400 rounded-3xl;
+    background: linear-gradient(145deg, #fffbeb, #ffffff);
+  }
+
+  // 6. Executive / Premium
+  &.executive-template {
+    @apply border-t-8 border-slate-900;
+    border-radius: 4px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+  }
+
+  // 7. Techniczny / IT – teraz w pełni czytelny (ciemny motyw)
+  &.technical-template {
+    background: #0f172a;           // głęboki, ładny ciemny kolor
+    color: #f8fafc;                // jasny tekst
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgb(15 23 42 / 0.5);
+
+    // Nadpisujemy wszystkie kolory tekstu z CVPreview
+    .cv-content {
+      color: #f8fafc;
+
+      h1 {
+        color: #f8fafc;
+      }
+
+      p {
+        color: #e2e8f0;            // jaśniejszy szary dla kontaktów
+      }
+
+      .text-blue-600 {
+        color: #60a5fa;            // jaśniejszy, bardziej widoczny niebieski
+      }
+
+      h3 {
+        color: #f8fafc;
+        border-bottom-color: #64748b;
+      }
+
+      .text-slate-700,
+      .text-slate-600,
+      .text-slate-900 {
+        color: #f1f5f9;            // wymuszamy jasny tekst
+      }
+
+      // placeholder na dole też czytelny
+      .bg-slate-100 {
+        background: #1e2937;
+        color: #e2e8f0;
+      }
+    }
+  }
+
+  // 8. Student / Entry-Level
+  &.student-template {
+    border: 3px dashed #10b981;
+    border-radius: 16px;
+    background: #f0fdf4;
+  }
+
+  // 9. Hybrid + Timeline – wersja zoptymalizowana (z padding shorthand)
+  &.hybrid-template {
+    border: 1px solid #7c3aed;
+    border-radius: 12px;
+    position: relative;
+    padding: 50px 55px 50px 95px;     // ← shorthand: top | right | bottom | left
+    background: white;
+
+    // linia czasu (idealnie wyśrodkowana, nie wchodzi na tekst)
+    &::before {
+      content: '';
+      position: absolute;
+      left: 55px;
+      top: 50px;
+      bottom: 50px;
+      width: 4px;
+      background: linear-gradient(to bottom, #7c3aed, #a78bfa);
+      border-radius: 9999px;
+      z-index: 1;
+    }
+
+    .cv-content {
+      position: relative;
+      z-index: 2;                      // tekst zawsze nad linią
+    }
+  }
+}
+
+// Dodatkowa klasa dla treści (używana w sidebar i w przyszłości w innych)
+.cv-content {
+  height: 100%;
+}
+
+// ==================== FORMULARZ ====================
+
+.form-panel {
+  h2 {
+    margin-bottom: $spacer-lg;
+    color: $color-text;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    color: $color-text-light;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: $spacer-md;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+}
+
+// ==================== GLOBAL TYPOGRAFIA ====================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: $font-weight-semibold;
+  line-height: $leading-tight;
+}
+
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-2xl; }
+
+// Formularz – lepsze etykiety
+.form-panel {
+  label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-light;
+    letter-spacing: 0.025em;
+  }
+}
+
+// Lekkie poprawki dla preview
+.cv-preview-container {
+  font-family: $font-sans;
+  font-size: $cv-font-size-base;
+  line-height: $cv-line-height;
+  color: $color-text;
+
+  h1 {
+    font-size: 2.75rem;           // trochę większe imię
+    font-weight: $font-weight-bold;
+    line-height: 1.1;
+    margin-bottom: 0.1em;
+  }
+
+  p {
+    font-size: 1.05rem;
+  }
+}
