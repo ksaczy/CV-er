@@ -14,6 +14,15 @@ function Builder() {
         setCvData(prev => ({ ...prev, [field]: value }));
     };
 
+    // ==================== ZDJECIE ====================
+    const handlePhotoUpload = (file: File) => {
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    updateCV('photo', reader.result as string);
+  };
+  reader.readAsDataURL(file);
+};
+
     // ==================== EXPERIENCE ====================
     const addExperience = () => {
         const newExp: Experience = {
@@ -99,6 +108,17 @@ function Builder() {
                     onSelect={(template) => updateCV('template', template)}
                 />
 
+                <label>Zdjęcie</label>
+                <input
+                type="file"
+                accept="image/*"
+                onChange={e => {
+                    if (e.target.files?.[0]) {
+                    handlePhotoUpload(e.target.files[0]);
+                    }
+                }}
+                />
+
                 <label>{t('form.name')}</label>
                 <input value={cvData.name} onChange={e => updateCV('name', e.target.value)} />
 
@@ -177,8 +197,10 @@ function Builder() {
             </div>
 
             {/* PREVIEW */}
-            <div className="preview-panel">
+                <div className="preview-panel">
+                <div className="cv-preview-wrapper">
                 <CVPreview data={cvData} />
+            </div>
             </div>
         </div>
     );

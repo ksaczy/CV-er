@@ -6,16 +6,16 @@ import Navbar from './components/layout/Navbar';   // ← nowy import
 
 function App() {
     return (
-        <div className="app">
-            {/* NAVBAR */}
-            <Navbar />
+<div className="app">
+  <Navbar />
 
-            {/* ROUTING */}
-            <Routes>
-                <Route path="/" element={<Builder />} />
-                <Route path="/preview" element={<FullPreview />} />
-            </Routes>
-        </div>
+  <div className="app-body">
+    <Routes>
+      <Route path="/" element={<Builder />} />
+      <Route path="/preview" element={<FullPreview />} />
+    </Routes>
+  </div>
+</div>
     );
 }
 

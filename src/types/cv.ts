@@ -28,6 +28,7 @@ export interface Education {
 export interface CVData {
     template: TemplateId;
 
+    photo?: string;
     name: string;
     title: string;
     email: string;
@@ -47,6 +48,7 @@ export interface CVData {
 export const DEFAULT_CV_DATA: CVData = {
     template: 'modern-clean',
 
+    photo : '',
     name: 'Jan Kowalski',
     title: 'Frontend Developer',
     email: 'jan.kowalski@email.com',

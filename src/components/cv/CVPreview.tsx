@@ -21,13 +21,22 @@ export default function CVPreview({ data }: Props) {
     };
 
     return (
-        <div id="cv-preview-container" className={`cv-preview-container ${getTemplateClass()}`}>
-            <div className="cv-content">
+            <div id="cv-preview-container" className={`cv-preview-container ${getTemplateClass()}`}>
+            <div className="cv-content relative">
+
+                {data.photo && (
+                <img
+                    src={data.photo}
+                    alt="Zdjęcie CV"
+                    className="cv-photo"
+                />
+                )}
+
                 {/* === NAGŁÓWEK === */}
                 <h1 className="text-4xl font-bold text-slate-900">{data.name}</h1>
                 <p className="text-xl text-blue-600 font-medium">{data.title}</p>
                 <p className="text-sm text-slate-600 mt-1">
-                    {data.email} • {data.phone} • {data.location}
+                {data.email} • {data.phone} • {data.location}
                 </p>
 
                 {/* === O MNIE === */}
@@ -120,7 +129,7 @@ export default function CVPreview({ data }: Props) {
                     <>
                         <h3 className="mt-8 text-lg font-semibold border-b pb-1 border-slate-300">Dodatkowe informacje</h3>
                         <p className="mt-3 text-slate-700 leading-relaxed">{data.additionalInfo}</p>
-                    </>
+                    </> 
                 )}
             </div>
         </div>
