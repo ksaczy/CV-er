@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { exportToPDF } from '../../utils/exportPDF';
 
 const languages = [
     { code: 'pl', label: '🇵🇱', name: 'PL' },
@@ -71,6 +72,7 @@ const Navbar = () => {
                 </button>
 
                 <button
+                    onClick={() => exportToPDF()}   // ← dodaj strzałkę + nawiasy
                     style={{
                         padding: '8px 20px',
                         background: '#10b981',
@@ -78,6 +80,7 @@ const Navbar = () => {
                         border: 'none',
                         borderRadius: '6px',
                         fontWeight: 500,
+                        cursor: 'pointer',
                     }}
                 >
                     {t('navbar.exportPdf')}
